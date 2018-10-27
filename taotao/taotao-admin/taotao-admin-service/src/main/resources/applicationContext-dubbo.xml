@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+      				  http://www.springframework.org/schema/beans/spring-beans.xsd
+      				  http://code.alibabatech.com/schema/dubbo 
+      				  http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+      				  http://www.springframework.org/schema/context
+      				  http://www.springframework.org/schema/context/spring-context.xsd">
+      				  
+  	<!-- ################## 配置服务提供者(dubbo) ################## -->
+  	<!-- 配置当前应用的名称 -->
+    <dubbo:application name="taotao-admin-service"/>
+    
+    <!-- 配置注册中心 ，采用广播作为注册中心  组播地址段: 224.0.0.0 239.255.255.255 -->
+    <dubbo:registry address="multicast://224.1.2.3:1234"/>
+    
+    <!-- 配置暴露服务需要用到得协议与端口号  -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    
+    <!-- 暴露服务 -->
+    <dubbo:service interface="com.taotao.admin.service.TestService" 
+    		ref="testServiceImpl"/>
+  	
+</beans>
